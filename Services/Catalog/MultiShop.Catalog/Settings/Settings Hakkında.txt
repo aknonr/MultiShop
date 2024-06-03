@@ -1,0 +1,1 @@
+﻿Bu klasör bizim veritabanı ile ilgili ayarları tutacak Interface ve classları tutacak
