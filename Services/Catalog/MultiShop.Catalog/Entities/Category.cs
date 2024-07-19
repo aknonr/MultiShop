@@ -6,7 +6,7 @@ namespace MultiShop.Catalog.Entities
     public class Category
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)] // Benzersiz olduğunu bildirmek için bunun bir Id Olduğunu bildirmiş olduk.
+        [BsonRepresentation(BsonType.ObjectId)] // BsonRepresentation sınıfın icerisinde  Benzersiz BsonType olduğunu bildirmek icin bunun bir Id Olduğunu bildirmis olduk.
 
         public string CategoryID { get; set; }
 
