@@ -10,18 +10,18 @@ namespace MultiShop.Catalog.Controller
     [ApiController]
     public class ProductDetailsController : ControllerBase
     {
-        private readonly IProductDetailService _ProductDetailsService;
+        private readonly IProductDetailService _productDetailsService;
 
         public ProductDetailsController(IProductDetailService ProductDetailsService)
         {
-            _ProductDetailsService = ProductDetailsService;
+            _productDetailsService = ProductDetailsService;
         }
 
         [HttpGet]
 
         public async Task<IActionResult> ProductDetailsList()
         {
-            var values = await _ProductDetailsService.GetAllProductDetailAsync();
+            var values = await _productDetailsService.GetAllProductDetailAsync();
             return Ok(values);
         }
 
@@ -30,7 +30,7 @@ namespace MultiShop.Catalog.Controller
         public async Task<IActionResult> GetProductDetailsById(string id)
         {
            
-            var values= _ProductDetailsService.GetByIdProductDetailAsync(id);
+            var values= await _productDetailsService.GetByIdProductDetailAsync(id);
             return Ok(values);
 
 
@@ -44,7 +44,7 @@ namespace MultiShop.Catalog.Controller
             //ProductDetails ProductDetails =new ProductDetails();
             //ProductDetails.ProductDetailsName=createProductDetailsDto.ProductDetailsName;
 
-            await _ProductDetailsService.CreateProductDetailAsync(createProductDetailDto);
+            await _productDetailsService.CreateProductDetailAsync(createProductDetailDto);
             return Ok("Ürün detayı başarıl şekilde eklenildi");
         }
 
@@ -52,7 +52,7 @@ namespace MultiShop.Catalog.Controller
 
         public async Task<IActionResult> DeleteCtegory(string id)
         {
-            await _ProductDetailsService.DeleteProductDetailAsync(id);
+            await _productDetailsService.DeleteProductDetailAsync(id);
             return Ok("\"Ürün detayı başarıyla silindi");
         }
 
@@ -60,7 +60,7 @@ namespace MultiShop.Catalog.Controller
 
         public async Task<IActionResult> UpdateProductDetails(UpdateProductDetailDto updateProductDetailsDto)
         {
-            await _ProductDetailsService.UpdateProductDetailAsync(updateProductDetailsDto);
+            await _productDetailsService.UpdateProductDetailAsync(updateProductDetailsDto);
             return Ok("Ürün detayı başarıyla güncellendi");
         }
     }

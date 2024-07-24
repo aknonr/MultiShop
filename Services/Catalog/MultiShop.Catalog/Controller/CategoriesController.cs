@@ -31,7 +31,7 @@ namespace MultiShop.Catalog.Controller
         {
            
 
-            var values= _categoryService.GetByIdCategoryAsync(id);
+            var values= await _categoryService.GetByIdCategoryAsync(id);
             return Ok(values);
 
 
