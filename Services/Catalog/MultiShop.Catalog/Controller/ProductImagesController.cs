@@ -26,6 +26,17 @@ namespace MultiShop.Catalog.Controller
 
         [HttpGet("{id}")]
 
+        public async Task<IActionResult> GetProductImageById(string id)
+        {
+            
+           var values=_ProductImageService.GetByIdProductImageAsync(id);
+            return Ok(values);
+
+
+        }
+
+        [HttpPost]
+
         public async Task<IActionResult> CreateProductImage(CreateProductImageDto createProductImageDto)
         {
             // Mapleme yapmasaydık bu nesne örneği üzerinde her birine proeperty atama yapmamiz  gerekiyordu Asagıdaki gibi atama yapacaktık
@@ -33,9 +44,7 @@ namespace MultiShop.Catalog.Controller
             //ProductImage.ProductImageName=createProductImageDto.ProductImageName;
 
             await _ProductImageService.CreateProductImageAsync(createProductImageDto);
-            return Ok("Ürün görselleri başarıyla eklendi");
-
-
+            return Ok("Ürün görselleri başarıyla Eklenildi");
         }
 
         [HttpDelete]

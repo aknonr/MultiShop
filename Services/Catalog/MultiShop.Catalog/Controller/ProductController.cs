@@ -26,16 +26,22 @@ namespace MultiShop.Catalog.Controller
 
         [HttpGet("{id}")]
 
+        public async Task<IActionResult> GetProductById(string id)
+        {
+
+            var values = _ProductService.GetByIdProductAsync(id);
+            return Ok(values);
+
+
+        }
+
+        [HttpPost]
+        
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
-            // Mapleme yapmasaydık bu nesne örneği üzerinde her birine proeperty atama yapmamiz  gerekiyordu Asagıdaki gibi atama yapacaktık
-            //Product Product =new Product();
-            //Product.ProductName=createProductDto.ProductName;
-
             await _ProductService.CreateProductAsync(createProductDto);
-            return Ok("Ürün başarıyla eklendi");
 
-
+            return Ok("Ürün Başarıyla Eklenildi");
         }
 
         [HttpDelete]

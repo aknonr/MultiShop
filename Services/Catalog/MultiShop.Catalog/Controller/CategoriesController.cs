@@ -27,15 +27,24 @@ namespace MultiShop.Catalog.Controller
 
         [HttpGet("{id}")]
 
-        public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
+        public async Task<IActionResult> GetCategoryById(string id)
         {
-            // Mapleme yapmasaydık bu nesne örneği üzerinde her birine proeperty atama yapmamiz  gerekiyordu Asagıdaki gibi atama yapacaktık
+           
+
+            var values= _categoryService.GetByIdCategoryAsync(id);
+            return Ok(values);
+
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
+        {// Mapleme yapmasaydık bu nesne örneği üzerinde her birine proeperty atama yapmamiz  gerekiyordu Asagıdaki gibi atama yapacaktık
             //Category category =new Category();
             //category.CategoryName=createCategoryDto.CategoryName;
 
             await _categoryService.CreateCategoryAsync(createCategoryDto);
-            return Ok("Kategori başarıyla eklendi");
-
+            return Ok("Kategori Başarıyla Eklenildi");
 
         }
 

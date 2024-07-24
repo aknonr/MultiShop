@@ -27,16 +27,25 @@ namespace MultiShop.Catalog.Controller
 
         [HttpGet("{id}")]
 
-        public async Task<IActionResult> CreateProductDetails(CreateProductDetailDto createProductDetailsDto)
+        public async Task<IActionResult> GetProductDetailsById(string id)
+        {
+           
+            var values= _ProductDetailsService.GetByIdProductDetailAsync(id);
+            return Ok(values);
+
+
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> CreateProductDetail(CreateProductDetailDto createProductDetailDto)
         {
             // Mapleme yapmasaydık bu nesne örneği üzerinde her birine proeperty atama yapmamiz  gerekiyordu Asagıdaki gibi atama yapacaktık
             //ProductDetails ProductDetails =new ProductDetails();
             //ProductDetails.ProductDetailsName=createProductDetailsDto.ProductDetailsName;
 
-            await _ProductDetailsService.CreateProductDetailAsync(createProductDetailsDto);
-            return Ok("Ürün detayı başarıyla eklendi");
-
-
+            await _ProductDetailsService.CreateProductDetailAsync(createProductDetailDto);
+            return Ok("Ürün detayı başarıl şekilde eklenildi");
         }
 
         [HttpDelete]
