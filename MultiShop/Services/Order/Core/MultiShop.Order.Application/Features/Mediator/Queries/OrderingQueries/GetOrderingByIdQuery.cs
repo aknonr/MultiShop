@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MultiShop.Order.Application.Features.Mediator.Queries.OrderingQueries
 {
-    public class GetOrderingByIdQuery:IRequest<GetOrderingQueryResult>
+    public class GetOrderingByIdQuery:IRequest<GetOrderingByIdQueryResult>
     {
         public int Id { get; set; }
 
