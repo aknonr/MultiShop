@@ -43,14 +43,22 @@ namespace MultiShop.Discount.Controllers
 
 
 
+        // HTTPGET ATTRİBUTU bize Id'ye göre dicount kuponlarını getirir . 
+
         [HttpGet("{id}")]
 
         public async Task<IActionResult> GetDiscountCouponById(int id)
         {
             var values = await _discountService.GetByIdDiscountCouponAsync(id);
-            return Ok(values);
+
+            return Ok(values); //Burada alınan deger (kupon bilgisi) Http 200 ok yanıtı ile birlikte bize değer döndürür
+
+
         }
 
+
+
+        //Yeni Bir Discount Kuponu olusturdugumuz yerdir .
 
         [HttpPost]
 
@@ -60,6 +68,9 @@ namespace MultiShop.Discount.Controllers
             return Ok("Kupon başarılı sekilde eklenildi");
         }
 
+
+        // Belirtilen ID'ye sahip discount kuponunu siler.
+
         [HttpDelete]
 
         public async Task<IActionResult> DeleteCoupon(int id)
@@ -68,6 +79,9 @@ namespace MultiShop.Discount.Controllers
 
             return Ok("Kupon başarıyla silindi");
         }
+
+
+        //Mevcut bir discount kuponunu güncelle
 
         [HttpPut]
         public async Task<IActionResult> UpdateDiscountCoupon(UpdateDiscountCouponDto updateCouponDto)

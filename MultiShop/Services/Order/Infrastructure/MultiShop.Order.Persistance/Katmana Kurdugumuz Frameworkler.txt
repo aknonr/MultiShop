@@ -1,0 +1,4 @@
+﻿Microsoft.EntityFrameworkCore  6.026 kuruldu
+Microsoft.EntityFrameworkCore.Design 6.026 
+Microsoft.EntityFrameworkCore.SqlServer  6.026
+Microsoft.EntityFrameworkCore.Tools 6.026
