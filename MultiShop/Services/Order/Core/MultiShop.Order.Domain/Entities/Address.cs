@@ -8,7 +8,7 @@ namespace MultiShop.Order.Domain.Entities
 {
     public class Address
     {
-        public int AdressId { get; set; }
+        public int AddressId { get; set; }
 
         public string UserId { get; set; }
 
