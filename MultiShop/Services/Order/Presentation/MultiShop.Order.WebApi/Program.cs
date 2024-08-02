@@ -1,12 +1,19 @@
-using MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
+﻿using MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
 using MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers;
+using MultiShop.Order.Application.Interfaces;
+using MultiShop.Order.Application.Services;
+using MultiShop.Order.Persistance.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+//Mediator kullanarak Apllication katmanında service klasörü oluşturduk ordan serviceregistiration adında class oluşturup asagıdkai islemleri yapabildik.
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddAplicationService(builder.Configuration);
 
-//Adres siniflar? icin  servis �rnekleri
+#region
+//Adres siniflari icin  servis örnekleri
 builder.Services.AddScoped<GetAddressQueryHandler>();
 builder.Services.AddScoped<GetAddressByIdQueryHandler>();
 builder.Services.AddScoped<CreateAddressCommandHandler>();
@@ -14,13 +21,13 @@ builder.Services.AddScoped<UpdateAddressCommandHandler>();
 builder.Services.AddScoped<RemoveAddressCommandHandler>();
 
 
-//OrderDetail siniflari icin servis �rnekleri
+//OrderDetail siniflari icin servis örnekleri
 builder.Services.AddScoped<GetOrderDetailByIdQueryHandler>();
 builder.Services.AddScoped<GetOrderDetailByIdQueryHandler>();
 builder.Services.AddScoped<CreateOrderDetailCommandHandler>();
 builder.Services.AddScoped<UpdateAddressCommandHandler>();
 builder.Services.AddScoped<RemoveAddressCommandHandler>();
-
+#endregion
 
 
 
