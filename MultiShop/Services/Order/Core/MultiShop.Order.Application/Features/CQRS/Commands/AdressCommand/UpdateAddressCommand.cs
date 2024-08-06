@@ -8,7 +8,7 @@ namespace MultiShop.Order.Application.Features.CQRS.Commands.AdressCommand
 {
     public class UpdateAddressCommand
     {
-        public int AdressId { get; set; }
+        public int AddressId { get; set; }
 
         public string UserId { get; set; }
 

@@ -21,11 +21,11 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
         //Güncelleme islemini yapacagımız method . 
         public async Task Handle(UpdateAddressCommand command)
         {
-            var values = await _repository.GetByIdAsync(command.AdressId);
-            values.Detail=command.Detail;
-            values.District=command.District;
-            values.City=command.City;
-            values.UserId=command.UserId;
+            var values = await _repository.GetByIdAsync(command.AddressId);
+            values.Detail = command.Detail;
+            values.District = command.District;
+            values.City = command.City;
+            values.UserId = command.UserId;
 
             await _repository.UpdateAsync(values);
 

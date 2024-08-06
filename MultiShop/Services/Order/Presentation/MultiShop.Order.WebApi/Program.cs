@@ -2,11 +2,12 @@
 using MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers;
 using MultiShop.Order.Application.Interfaces;
 using MultiShop.Order.Application.Services;
+using MultiShop.Order.Persistance.Context;
 using MultiShop.Order.Persistance.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddDbContext<OrderContext>();
 
 //Mediator kullanarak Apllication katmanında service klasörü oluşturduk ordan serviceregistiration adında class oluşturup asagıdkai islemleri yapabildik.
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));

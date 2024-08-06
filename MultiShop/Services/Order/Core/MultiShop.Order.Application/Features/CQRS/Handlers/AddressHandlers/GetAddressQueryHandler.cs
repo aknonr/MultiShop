@@ -27,11 +27,11 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
             var values =await _repository.GetAllAsync();
             return values.Select(x=>new GetAddressQueryResult
             {
-                AdressId=x.AddressId,
-                City=x.City,
-                Detail=x.Detail,
-                District=x.District,
-                UserId=x.UserId,
+                AddressId = x.AddressId,
+                City = x.City,
+                Detail = x.Detail,
+                District = x.District,
+                UserId = x.UserId,
             }).ToList();
 
         }

@@ -31,7 +31,7 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
             {
                 //Asagıda gelen propertyler GetAddressByIdQueryResult propertyleri 
 
-                AdressId = values.AddressId,
+                AddressId = values.AddressId,
                 City = values.City,
                 Detail = values.Detail,
                 District = values.District,
