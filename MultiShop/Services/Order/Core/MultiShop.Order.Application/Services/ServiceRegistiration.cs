@@ -12,11 +12,9 @@ namespace MultiShop.Order.Application.Services
     {
 
         //Bunun yapılma sebebi Presentation katamnında controllerde Ordering Api ucunu program.cs 'de registiration yapmadık . ama onu uygulama için asagıdaki metoda yaptık. 
-        public static void AddAplicationService(this IServiceCollection services , IConfiguration configuration) 
+        public static void AddApplicationService(this IServiceCollection services, IConfiguration configuration)
         {
-
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ServiceRegistiration).Assembly));
-        
         }
     }
 }

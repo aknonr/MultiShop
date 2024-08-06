@@ -20,19 +20,15 @@ namespace MultiShop.Order.Application.Features.Mediator.Handlers.OrderingHandler
             _repository = repository;
         }
 
-
-
-        //Bu metot Mediatr aracılığıyla geldi . Implement Interface yaptıktan sonra geldi
         public async Task<List<GetOrderingQueryResult>> Handle(GetOrderingQuery request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetAllAsync();
-
-            return values.Select(x=> new GetOrderingQueryResult
+            return values.Select(x => new GetOrderingQueryResult
             {
-                OrderingId=x.OrderingId,
-                OrderDate=x.OrderDate,
-                TotalPrice=x.TotalPrice,
-                UserId=x.UserId
+                OrderingId = x.OrderingId,
+                OrderDate = x.OrderDate,
+                TotalPrice = x.TotalPrice,
+                UserId = x.UserId
             }).ToList();
         }
     }

@@ -11,7 +11,7 @@ builder.Services.AddDbContext<OrderContext>();
 
 //Mediator kullanarak Apllication katmanında service klasörü oluşturduk ordan serviceregistiration adında class oluşturup asagıdkai islemleri yapabildik.
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddAplicationService(builder.Configuration);
+builder.Services.AddApplicationService(builder.Configuration);
 
 #region
 //Adres siniflari icin  servis örnekleri
@@ -23,11 +23,11 @@ builder.Services.AddScoped<RemoveAddressCommandHandler>();
 
 
 //OrderDetail siniflari icin servis örnekleri
-builder.Services.AddScoped<GetOrderDetailByIdQueryHandler>();
+builder.Services.AddScoped<GetOrderDetailQueryHandler>();
 builder.Services.AddScoped<GetOrderDetailByIdQueryHandler>();
 builder.Services.AddScoped<CreateOrderDetailCommandHandler>();
-builder.Services.AddScoped<UpdateAddressCommandHandler>();
-builder.Services.AddScoped<RemoveAddressCommandHandler>();
+builder.Services.AddScoped<UpdateOrderDetailCommandHandler>();
+builder.Services.AddScoped<RemoveOrderDetailCommandHandler>();
 #endregion
 
 
