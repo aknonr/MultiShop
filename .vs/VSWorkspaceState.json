@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MultiShop",
+    "\\MultiShop\\IdentityServer",
+    "\\MultiShop\\IdentityServer\\MultiShop.IdentityServer"
   ],
+  "SelectedNode": "\\MultiShop\\IdentityServer\\MultiShop.IdentityServer\\Startup.cs",
   "PreviewInSolutionExplorer": false
 }
