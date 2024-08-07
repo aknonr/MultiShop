@@ -26,6 +26,7 @@ namespace MultiShop.IdentityServer.Controllers
             // Kullanıcı kaydı işlemini gerçekleştirmek için yazılmıştır . 
 
             //ApplicationUser adından bir nesne oluşturuyoruz. ve gelen dto bu nesneyi alır ve atamasını asağıda yapılmıştır.
+            //Dikkat !! Postman üzerinden veri girişi yapılmıştır ve db bear üzerinden kontrol edilmiştir.
             var values = new ApplicationUser()
             {
                 UserName = userRegisterDto.UserName,
