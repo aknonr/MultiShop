@@ -1,17 +1,19 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MultiShop.Catalog.Dtos.ProductDtos;
 using MultiShop.Catalog.Services.ProductServices;
 
 namespace MultiShop.Catalog.Controller
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
 
-        public ProductController(IProductService ProductService)
+        public ProductsController(IProductService ProductService)
         {
             _productService = ProductService;
         }

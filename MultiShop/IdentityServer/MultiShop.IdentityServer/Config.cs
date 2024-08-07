@@ -4,6 +4,7 @@
 
 using IdentityServer4;
 using IdentityServer4.Models;
+using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
@@ -17,11 +18,13 @@ namespace MultiShop.IdentityServer
         {
             // Api resource tek tek isimlendirme yapıyoruz. 
             //ResourceCatalog isimine sahip olan kullanıcı (CatalogFullPermission) yetkisine sahip olacak.
-            new ApiResource("ResourcecCatalog"){ Scopes={"CatalogFullPermission","CatalogReadPermission"} },
+            new ApiResource("ResourceCatalog"){ Scopes={"CatalogFullPermission","CatalogReadPermission"} },
 
             new ApiResource("ResourceDiscount"){Scopes={"DiscountFullPermission"} },
 
             new ApiResource("ResourceOrder"){Scopes={"OrderFullPermission"} },
+
+            new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
 
         };
 
@@ -55,6 +58,8 @@ namespace MultiShop.IdentityServer
             //OrderFullPermission order işlmeleri için full yetki verdik . 
             new ApiScope("OrderFullPermission","Full authority for order operations"),
 
+            new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
+
         };
 
 
@@ -70,7 +75,7 @@ namespace MultiShop.IdentityServer
               ClientName="Multi Shop Visitor User",
               AllowedGrantTypes= GrantTypes.ClientCredentials,
               ClientSecrets={new Secret("multishopsecret".Sha256()) },
-              AllowedScopes={ "CatalogReadPermission" }
+              AllowedScopes={ "DiscountFullPermission" }
 
           },
 
