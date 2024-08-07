@@ -9,50 +9,41 @@ namespace MultiShop.IdentityServer
 {
     public static class Config
     {
-        public static IEnumerable<IdentityResource> IdentityResources =>
-                   new IdentityResource[]
-                   {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
-                   };
+        public static IEnumerable<ApiResource> ApiResources => new ApiResource[]
+        {
+            // Api resource tek tek isimlendirme yapıyoruz. 
+            //ResourceCatalog isimine sahip olan kullanıcı (CatalogFullPermission) yetkisine sahip olacak.
+            new ApiResource("ResourcecCatalog"){ Scopes={"CatalogFullPermission","CatalogReadPermission"} }
 
-        public static IEnumerable<ApiScope> ApiScopes =>
-            new ApiScope[]
-            {
-                new ApiScope("scope1"),
-                new ApiScope("scope2"),
-            };
+        };
 
-        public static IEnumerable<Client> Clients =>
-            new Client[]
-            {
-                // m2m client credentials flow client
-                new Client
-                {
-                    ClientId = "m2m.client",
-                    ClientName = "Client Credentials Client",
 
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
+        public static IEnumerable<IdentityResource> IdentityResources => new IdentityResource[]
+        {
+            //Herkese açık olan Id'ye erişim sağlayacak
+           new IdentityResources.OpenId(),
 
-                    AllowedScopes = { "scope1" }
-                },
+           //herkese açık olan Email erişim sağlacak
+           new IdentityResources.Email(),
 
-                // interactive client using code flow + pkce
-                new Client
-                {
-                    ClientId = "interactive",
-                    ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
+           //Herkese açık olan Profile erişim sağlayacak
+           new IdentityResources.Profile(),
+        };
 
-                    AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:44300/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
-                    PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
 
-                    AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "scope2" }
-                },
-            };
+        public static IEnumerable<ApiScope> ApiScopes => new ApiScope[]
+        {
+            //CatalogFullPermission yetkisine sahip olan kişi Katalog işlemleri için tam yetki verdik . Bunu da ingilizce olarak yazdık .
+            new ApiScope("CatalogFullPermission","Full authority for catalog operations"),
+
+            //Full okuma işlemi veridm bu yetkiye sahip olan kişiye 
+            new ApiScope("CatalogReadPermission","Reading authority for catalog operations")
+
+        };
+
+
+
+     
     }
 }
