@@ -4,8 +4,6 @@
 
 using IdentityServer4;
 using IdentityServer4.Models;
-using Microsoft.AspNetCore.Http.Connections;
-using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
 namespace MultiShop.IdentityServer
@@ -18,14 +16,10 @@ namespace MultiShop.IdentityServer
         {
             // Api resource tek tek isimlendirme yapıyoruz. 
             //ResourceCatalog isimine sahip olan kullanıcı (CatalogFullPermission) yetkisine sahip olacak.
-            new ApiResource("ResourceCatalog"){ Scopes={"CatalogFullPermission","CatalogReadPermission"} },
-
-            new ApiResource("ResourceDiscount"){Scopes={"DiscountFullPermission"} },
-
-            new ApiResource("ResourceOrder"){Scopes={"OrderFullPermission"} },
-
-            new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
-
+           new ApiResource("ResourceCatalog"){Scopes={"CatalogFullPermission","CatalogReadPermission"} },
+           new ApiResource("ResourceDiscount"){Scopes={"DiscountFullPermission"} },
+           new ApiResource("ResourceOrder"){Scopes={"OrderFullPermisson"}},
+           new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
 
@@ -47,16 +41,16 @@ namespace MultiShop.IdentityServer
         public static IEnumerable<ApiScope> ApiScopes => new ApiScope[]
         {
             //CatalogFullPermission yetkisine sahip olan kişi Katalog işlemleri için tam yetki verdik . Bunu da ingilizce olarak yazdık .
-            new ApiScope("CatalogFullPermission","Full authority for catalog operations"),
+              new ApiScope("CatalogFullPermission","Full authority for catalog operations"),
 
             //Full okuma işlemi veridm bu yetkiye sahip olan kişiye 
-            new ApiScope("CatalogReadPermission","Reading authority for catalog operations"),
+           new ApiScope("CatalogReadPermission","Reading authority for catalog operations"),
 
             //DiscountFullPermission discount işlemleri için full yetki verdik . 
             new ApiScope("DiscountFullPermission","Full authority for discount operations"),
 
             //OrderFullPermission order işlmeleri için full yetki verdik . 
-            new ApiScope("OrderFullPermission","Full authority for order operations"),
+             new ApiScope("OrderFullPermisson","Full authority for order operations"),
 
             new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
 
@@ -71,11 +65,11 @@ namespace MultiShop.IdentityServer
           //Visitor
           new Client
           {
-              ClientId="MultiShopVisitorId",
-              ClientName="Multi Shop Visitor User",
-              AllowedGrantTypes= GrantTypes.ClientCredentials,
-              ClientSecrets={new Secret("multishopsecret".Sha256()) },
-              AllowedScopes={ "DiscountFullPermission" }
+                ClientId="MultiShopVisitorId",
+                ClientName="Multi Shop Visitor User",
+                AllowedGrantTypes=GrantTypes.ClientCredentials,
+                ClientSecrets={new Secret("multishopsecret".Sha256())},
+             AllowedScopes={"CatalogReadPermission","CatalogFullPermission"}
 
           },
 
@@ -84,37 +78,44 @@ namespace MultiShop.IdentityServer
 
           new Client
           {
-              ClientId="MultiShopManagerId",
-              ClientName="Multi Shop Manager User",
-              AllowedGrantTypes= GrantTypes.ClientCredentials,
-              ClientSecrets= {new Secret ("multishopsecret".Sha256()) },
-              AllowedScopes={ "CatalogReadPermission", "CatalogFullPermission" }
+                ClientId="MultiShopManagerId",
+                ClientName="Multi Shop Manager User",
+                AllowedGrantTypes=GrantTypes.ClientCredentials,
+                ClientSecrets={new Secret("multishopsecret".Sha256()) },
+                AllowedScopes={ "CatalogFullPermission", "CatalogReadPermission", IdentityServerConstants.LocalApi.ScopeName,
+              IdentityServerConstants.StandardScopes.Email,
+              IdentityServerConstants.StandardScopes.OpenId,
+              IdentityServerConstants.StandardScopes.Profile},
+
+
+
+
+
           },
 
 
           //Admin
 
           new Client
-          {
-              ClientId="MultiShopAdminId",
-              ClientName="Multi Shop Admin User", 
-              AllowedGrantTypes=GrantTypes.ClientCredentials,
-              ClientSecrets={new Secret("multishopsecret".Sha256()) },
-              AllowedScopes={ "CatalogFullPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermission",
+          { 
+                ClientId="MultiShopAdminId",
+                ClientName="Multi Shop Admin User",
+                AllowedGrantTypes=GrantTypes.ClientCredentials,
+                ClientSecrets={new Secret("multishopsecret".Sha256()) },
+                AllowedScopes={ "CatalogFullPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermisson",
               IdentityServerConstants.LocalApi.ScopeName,
               IdentityServerConstants.StandardScopes.Email,
               IdentityServerConstants.StandardScopes.OpenId,
-              IdentityServerConstants.StandardScopes.Profile,
-              },
+              IdentityServerConstants.StandardScopes.Profile},
 
               AccessTokenLifetime=600
-          },
+          }
 
 
         };
 
 
 
-     
+
     }
 }

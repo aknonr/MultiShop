@@ -28,8 +28,7 @@ namespace MultiShop.IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLocalApiAuthentication();
-
+            services.AddLocalApiAuthentication(); //Bu methodla  yerelde bir tane token alacam ve bu token ile koruma altındayken işlemleri gerçekleştiriyoruz
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(options =>
