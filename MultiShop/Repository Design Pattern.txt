@@ -1,0 +1,24 @@
+﻿-----Repository Design Pattern---
+
+Crud  (Create,Read, Update,Delete) işlemlerindeki tekrarı önlemeyi amaçlar
+Ağırlıklı olarak Interfacelere bağlıdır. 
+Bu Interfacelerin  sınıf karşlığı vardır ve oraya enjekte edilir 
+Data AccesLayer katmanınnda yapacağız bu işlemleri . 
+
+                      Business Entity   Data Mapper           
+Bussiness Logic Layer --------------->   Repository  -------> Data Source
+                      <----------------              <-------
+                      
+
+Repository sınıfı, içerisinde generic yapılanmalarla geliştirilen temel operasyonel veritabanı metotlarını barındıran bir sınıftır. Yukarıdaki diyagramdan da görüldüğü üzere sorgu generate etme ve genellikle ORM araçlarıyla kombine edilerek veri eşleştirme sorumluluğunu üstlenmektedir. Bu yeteneklerini ana business sorumluluğunu yüklenen sınıflara kalıtım yoluyla aktarmakta ve bu şekilde kazandırmaktadır.
+
+
+
+Avantajları : 
+Veri kaynağından bağımsız olarak veriye erişmek için tutarlı ve merkezi bir yol sağlar.
+Business logic(iş mantığı) ve data access logic(veri erişim mantığı)‘i ayırarak daha temiz ve sürdürülebilir kod yapısına katkıda bulunur.
+
+Dezavantajları : 
+Basit uygulamalarad kullanımı gereksizdir. 
+Gereksiz soyutlamalar karmaşıklığı arttırarak kod okunabilirliğini azaltır .
+
