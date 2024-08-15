@@ -2,9 +2,9 @@
 {
     public class RedisSettings
     {
-        public string _host { get; set; }
+        public string Host { get; set; }
 
-        public int _port { get; set; }
+        public int Port { get; set; }
 
     
     }
