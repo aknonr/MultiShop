@@ -10,6 +10,7 @@ namespace MultiShop.Catalog.Services.ProductDetailDetailServices
     {
         private readonly IMapper _mapper;
         private readonly IMongoCollection<ProductDetail> _ProductDetailCollection;
+
         public ProductDetailService(IMapper mapper, IDatabaseSettings _databaseSettings)
         {
             var client = new MongoClient(_databaseSettings.ConnectionString);
