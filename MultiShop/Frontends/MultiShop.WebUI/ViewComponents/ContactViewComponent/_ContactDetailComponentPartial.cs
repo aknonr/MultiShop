@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MultiShop.WebUI.ViewComponents.UILayoutViewComponents
+namespace MultiShop.WebUI.ViewComponents.ContactViewComponent
 {
-    public class _DirectoryAlertUILayoutComponentPartial : ViewComponent
+    public class _ContactDetailComponentPartial : ViewComponent
     {
-
 
         public IViewComponentResult Invoke()
         {
