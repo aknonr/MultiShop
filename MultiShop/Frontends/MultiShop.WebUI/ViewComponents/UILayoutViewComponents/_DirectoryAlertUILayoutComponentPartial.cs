@@ -2,9 +2,11 @@
 
 namespace MultiShop.WebUI.ViewComponents.UILayoutViewComponents
 {
-    public class _NavbarUILayoutComponentPartial: ViewComponent
+    public class _DirectoryAlertUILayoutComponentPartial:ViewComponent
     {
-        public  IViewComponentResult Invoke()
+
+
+        public IViewComponentResult Invoke()
         {
             return View();
         }
