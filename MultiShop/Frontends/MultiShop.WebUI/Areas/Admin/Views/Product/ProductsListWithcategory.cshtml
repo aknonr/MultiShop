@@ -1,0 +1,98 @@
+﻿@model List<ResultProductWithCategoryDto>
+@{
+    ViewData["Title"] = "ProductsListWithcategory";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<style>
+    .btn {
+        transition: transform 0.2s ease;
+    }
+
+    .btn:active {
+        transform: scale(0.95); /* Butona basınca küçülme efekti */
+    }
+
+    .btn-loading {
+        position: relative;
+        pointer-events: none;
+        opacity: 0.7;
+    }
+
+    .btn-loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #fff;
+        border-top: 2px solid #007bff;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        transform: translate(-50%, -50%);
+    }
+
+    @@keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+</style>
+
+<section class="content container-fluid mt-4" style="max-width: 90%;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <div class="table-responsive bs-example" data-example-id="bordered-table">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ürün Adı</th>
+                                <th>Ürün Fiyatı</th>
+                                <th>Ürün Kategori</th>
+                                <th>Sil</th>
+                                <th>Güncelle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@item.ProductName</td>
+                                    <td>@item.ProductPrice</td>
+                                    <td>@item.CategoryName</td>
+                                    <td>
+                                        <a href="/Admin/Product/DeleteProduct/@item.ProductId" class="btn btn-danger btn-loading-animation">
+                                            <i class="fas fa-trash-alt"></i> Sil
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-success btn-loading-animation">
+                                            <i class="fas fa-edit"></i> Güncelle
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/Admin/Product/CreateProduct/" class="btn btn-primary btn-lg btn-loading-animation mt-3">
+                        <i class="fas fa-plus"></i> Yeni Ürün Girişi Girişi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.querySelectorAll('.btn-loading-animation').forEach(button => {
+        button.addEventListener('click', function () {
+            this.classList.add('btn-loading'); // Loading animasyonunu başlat
+        });
+    });
+</script>
+
