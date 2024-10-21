@@ -15,5 +15,7 @@ namespace MultiShop.Catalog.Services.ProductServices
         Task DeleteProductAsync(string id);                           //Silme islemi yapacak metot
 
         Task<GetByIdProductDto> GetByIdProductAsync(string id);        //Id 'e göre getirme islemi
+        
+        Task<List<ResultProductsWithCategoryDto>> GetProductsWithCategoryAsync();
     }
 }
